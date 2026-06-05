@@ -323,11 +323,13 @@ def build_portfolio_context(
                 if row["allocation_pct"] is not None
                 else "N/A"
             )
+            current_price_str = f"${row['current_price']:.2f}" if row['current_price'] else 'N/A'
+            market_value_str = f"${row['market_value']:,.2f}" if row['market_value'] else 'N/A'
             parts.append(
                 f"  {row['ticker']}: {row['quantity']:.4f} shares | "
                 f"avg cost ${row['avg_cost']:.2f} | "
-                f"current ${row['current_price']:.2f if row['current_price'] else 'N/A'} | "
-                f"value ${row['market_value']:,.2f if row['market_value'] else 'N/A'} | "
+                f"current {current_price_str} | "
+                f"value {market_value_str} | "
                 f"unrealized P&L {pnl_str} | allocation {alloc}"
             )
 

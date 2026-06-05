@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(uv sync *)",
-      "Bash(uv run python -c ' *)"
+      "Bash(uv run python -c ' *)",
+      "mcp__claude_ai_Google_Drive__create_file"
     ]
   }
 }
