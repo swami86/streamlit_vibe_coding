@@ -86,7 +86,11 @@ def fetch_current_prices(tickers: tuple[str, ...]) -> dict[str, float | None]:
     for ticker in tickers:
         try:
             hist = yf.Ticker(ticker).history(period="2d")
-            prices[ticker] = float(hist["Close"].iloc[-1]) if not hist.empty else None
+            if not hist.empty:
+                close = hist["Close"].dropna()
+                prices[ticker] = float(close.iloc[-1]) if not close.empty else None
+            else:
+                prices[ticker] = None
         except Exception:
             prices[ticker] = None
     return prices
